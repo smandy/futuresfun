@@ -1,0 +1,4 @@
+/.idea/**
+/target/classes/META-INF/futuresfun.kotlin_module
+/futuresfun.iml
+/target/classes/**
