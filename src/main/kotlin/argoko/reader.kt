@@ -1,6 +1,13 @@
-package argoko
+package argoko.reader
 
-import java.io.FileReader
+import java.io.*
+import java.util.logging.Logger
+
+object Reader {
+    val log = Logger.getLogger(Reader::javaClass.name)
+}
+
+val log = Reader.log
 
 val xs = listOf("1", "2", "3", "4", "5")
 val doit = listOf("foo",
@@ -13,7 +20,7 @@ fun main() {
             getOrPut(s1) { mutableMapOf() }
                     .getOrPut(s2) { mutableListOf() }
     x3.get("foo", "bar") += "Woot"
-    println("x is $x3")
+    log.info("x is $x3")
     data class Properties(val first : String,
                           val last : String,
                           val property : String)
@@ -27,12 +34,15 @@ fun main() {
             .map { it.split(",") }
             .map { (a,b,c) -> Properties(a,b,c) }
     properties.forEach { (a,b,c) -> x3.get(a,b) += c }
-    x3.forEach{
-        (first, rest) ->
-        println("$first\n=========")
-        rest.forEach { last, lst ->
-            println("   $last -> ${lst.joinToString(",", "[", "]")}")
+    makeWriter { pw ->
+        x3.forEach { (first, rest) ->
+            pw.println("$first\n=========")
+            rest.forEach { last, lst ->
+                pw.println("   $last -> ${lst.joinToString(",", "[", "]")}")
+            }
         }
+    }.apply {
+        println(this)
     }
 
     val x = FileReader("/home/andy/rach/strip.csv")
@@ -52,18 +62,29 @@ data class Person( val first : String, val last : String, val age : Int) {
     override fun toString() = "| ${first.padEnd(10, ' ')} | ${last.padEnd(10, ' ')} | $age |"
 }
 
-fun <T>Collection<T>.dump(label : String) {
-    println("\n\n$label\n=========================")
-    forEach(::println)
+fun <T>Collection<T>.dump(label : String, pw : PrintWriter) {
+    pw.println("\n\n$label\n=========================")
+    forEach { pw.println(it.toString()) }
+}
+
+fun makeWriter( f : (PrintWriter) -> Unit) = StringWriter().use {
+    PrintWriter(it).use {pw ->
+        f(pw)
+    }
+    it.toString()
 }
 
 fun doit() {
     val people = listOf(Person("Sophie", "Smith", 16),
             Person("Audrey", "Hind", 40))
     val (majors, minors) = people.partition { it.age > 18 }
-
-    majors.dump("Majors")
-    minors.dump("Minors")
+   makeWriter {
+        majors.dump("Majors", it)
+        minors.dump("Minors", it)
+    }
+           .apply {
+                log.info(this)
+            }
 }
 
 
