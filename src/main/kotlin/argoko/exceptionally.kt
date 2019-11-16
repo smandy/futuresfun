@@ -15,20 +15,17 @@ fun main() {
     val executor = Executors.newSingleThreadScheduledExecutor()
 
     fun <T, U> CompletableFuture<T>.thenComposeAsync(executor: Executor
-                                                     , mapping: (T) -> CompletionStage<U>):
-            CompletableFuture<U> {
+                                                     , mapping: (T) -> CompletionStage<U>) : CompletableFuture<U> {
         return thenComposeAsync( JavaFunction  { it  -> mapping(it) }, executor)
     }
 
     fun <T, U> CompletableFuture<T>.thenApplyAsync(executor: Executor
-                                                     , mapping: (T) -> U):
-            CompletableFuture<U> {
+                                                     , mapping: (T) -> U) : CompletableFuture<U> {
         return thenApplyAsync( JavaFunction  { it  -> mapping(it) }, executor)
     }
 
     fun <T> CompletableFuture<T>.thenAcceptAsync(executor: Executor
-                                                     , mapping: (T) -> Unit ):
-            CompletableFuture<Void> {
+                                                     , mapping: (T) -> Unit ) : CompletableFuture<Void> {
         return thenAcceptAsync( Consumer { mapping(it) }, executor)
     }
 

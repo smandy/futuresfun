@@ -1,4 +1,4 @@
-package argoko
+package argoko.vwap
 
 data class QtyPx( val qty : Int, val px : Double) {
     companion object {

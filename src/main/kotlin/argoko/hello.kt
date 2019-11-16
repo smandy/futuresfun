@@ -4,11 +4,15 @@ import org.apache.log4j.LogManager
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.Executors
 import java.util.function.Supplier
+import kotlin.math.absoluteValue
 
-
+import argoko.extensions.*
 object Hello {
     val log = LogManager.getLogger( Hello::class.java)
 }
+
+/** Return absolute value of the given [number] **/
+fun abs(number : Int): Int = number.absoluteValue
 
 val log = Hello.log
 
@@ -34,7 +38,7 @@ fun main() {
         ret
     }.thenCompose {
         x -> log.info("Composing")
-        CompletableFuture.supplyAsync { Thread.sleep(1000);log.info("Supplying"); x * 2}
+        KCompletableFuture.supplyAsync(executors) { Thread.sleep(1000);log.info("Supplying"); x * 2}
     }.thenCompose {
         x ->
         log.info("Returning completedfuture")
