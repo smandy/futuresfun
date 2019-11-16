@@ -13,8 +13,6 @@ infix fun<T,R> List<T>.map2( x : (T) -> R) = this.map(x)
 val xs = listOf(4,5,6).map { it * it}
 
 infix fun Int.ard( x : Int) = this + x
-fun Int.plus( x : Int) = this + x
-fun Int.div( x : Int) = this / x
 
 inline fun <T, R> T.`⩥`(block: T.() -> R): R {
     return block()
@@ -22,7 +20,6 @@ inline fun <T, R> T.`⩥`(block: T.() -> R): R {
 
 fun<T> T.repeated(n : Int) = (0 until n).map { this }
 
-var visibility = false
 fun <T> T.debug(b : Boolean, block: (T) -> Unit) = if (b) { block(this); this } else this
 
 fun main() {
