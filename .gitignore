@@ -1,4 +1,11 @@
-/.idea/**
 /target/classes/META-INF/futuresfun.kotlin_module
 /futuresfun.iml
 /target/classes/**
+
+/.idea/encodings.xml
+/.idea/compiler.xml
+/.idea/kotlinc.xml
+/.idea/misc.xml
+/.idea/uiDesigner.xml
+/.idea/vcs.xml
+/.idea/workspace.xml
