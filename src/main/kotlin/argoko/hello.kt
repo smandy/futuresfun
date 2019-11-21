@@ -1,14 +1,15 @@
 package argoko
 
-import org.apache.log4j.LogManager
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.Executors
 import java.util.function.Supplier
 import kotlin.math.absoluteValue
 
 import argoko.extensions.*
+import org.slf4j.LoggerFactory
+
 object Hello {
-    val log = LogManager.getLogger( Hello::class.java)
+    val log = LoggerFactory.getLogger( Hello::class.java)
 }
 
 /** Return absolute value of the given [number] **/
