@@ -9,9 +9,6 @@ data class QtyPx( val qty : Int, val px : Double) {
     companion object {
         val ZERO = QtyPx(0, 0.0)
     }
-
-    val vol : Double
-        get() = qty * px
 }
 
 data class QtyVol(val qty : Int, val vol : Double) {
