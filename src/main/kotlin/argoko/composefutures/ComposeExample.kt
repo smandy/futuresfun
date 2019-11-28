@@ -1,4 +1,4 @@
-package argoko
+package argoko.composefutures
 
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.Executors

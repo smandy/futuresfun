@@ -5,6 +5,7 @@ import java.math.BigInteger
 
 val log = LoggerFactory.getLogger("fje")!!
 
+/** Single threads still win sometimes :-) **/
 object Fib2 {
     private val ONE = 1.toBigInteger()
     private val cache = mutableMapOf(1 to ONE, 2 to ONE)

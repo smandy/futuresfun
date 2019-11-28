@@ -1,5 +1,7 @@
 package argoko.crack
 
+/** Erm.... yeah. Crack. lets not do this again **/
+
 infix fun<T> List<T>.`±`(x : T ) = this + x
 
 infix fun<T,R> T.`⫸`( fn : (T) -> R) = fn(this)

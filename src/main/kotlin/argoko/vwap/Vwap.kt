@@ -1,5 +1,7 @@
 package argoko.vwap
 
+/** Playing with extension functions for arithmetic operations of vwap **/
+
 data class QtyPx( val qty : Int, val px : Double) {
     companion object {
         val ZERO = QtyPx(0, 0.0)

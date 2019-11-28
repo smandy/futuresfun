@@ -1,4 +1,4 @@
-package argoko
+package argoko.composefutures
 
 import argoko.extensions.KCompletableFuture
 import argoko.extensions.schedule
