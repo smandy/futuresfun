@@ -28,6 +28,9 @@ fun main() {
     val x = 10 `⫸` { it + 20 } `⫸` { it * 2 }
     val x2 = 10 `≫` { this ard 10 } `≫` { this / 3 } `≫` { listify() }
     val b = true
+
+    fun add( x : Int, y : Int) = x + y
+
     val x3 = 10+10
             .debug(b) { println("add $it")}
             .div(3)

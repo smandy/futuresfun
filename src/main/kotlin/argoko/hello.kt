@@ -4,7 +4,6 @@ import java.util.concurrent.CompletableFuture
 import java.util.concurrent.Executors
 import java.util.function.Supplier
 import kotlin.math.absoluteValue
-
 import argoko.extensions.*
 import org.slf4j.LoggerFactory
 

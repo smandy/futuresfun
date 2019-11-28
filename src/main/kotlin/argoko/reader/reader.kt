@@ -86,6 +86,12 @@ fun doit() {
             .apply {
                 log.info(this)
             }
+
+    PrintWriter("/tmp/foo.txt").use {
+        it.println("Bar")
+        it.println("Goo")
+        it.println("Goo")
+    }
 }
 
 
