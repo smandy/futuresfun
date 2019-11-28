@@ -1,4 +1,4 @@
-package fib
+package argoko.fib
 
 import org.slf4j.LoggerFactory
 import java.math.BigInteger
