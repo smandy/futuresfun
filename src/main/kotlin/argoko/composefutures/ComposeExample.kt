@@ -16,6 +16,12 @@ fun abs(number : Int): Int = number.absoluteValue
 
 val log = Hello.log
 
+/**
+ * Experiments with CompletionStage
+ *
+ * NB - Note correspondence. thenCompose == flatMap , thenApply == map :-)
+ * Monads all the way down.
+ */
 fun main() {
     val executors =  Executors.newCachedThreadPool()
     log.info("Main thread")
