@@ -87,7 +87,7 @@ fun doit() {
                 log.info(this)
             }
 
-    PrintWriter("/tmp/foo.txt").use {
+    PrintWriter("/cache/foo.txt").use {
         it.println("Bar")
         it.println("Goo")
         it.println("Goo")
