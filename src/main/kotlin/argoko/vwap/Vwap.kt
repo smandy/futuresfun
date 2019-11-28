@@ -1,7 +1,10 @@
 package argoko.vwap
 
-/** Playing with extension functions for arithmetic operations of vwap **/
-
+/**
+ *
+ * Playing with extension functions for arithmetic operations of vwap
+ *
+ */
 data class QtyPx( val qty : Int, val px : Double) {
     companion object {
         val ZERO = QtyPx(0, 0.0)
@@ -32,5 +35,5 @@ fun main() {
     println( setOf(
             10 at 101.0,
             20 at 103.2,
-            30 at 104.0) )
+            30 at 104.0).vwap() )
 }
