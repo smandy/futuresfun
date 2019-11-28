@@ -26,7 +26,7 @@ data class QtyVol(val qty : Int, val vol : Double) {
 
 infix fun Int.at(px : Double) = QtyPx(this, px)
 
-fun Iterable<QtyPx>.vwap() = fold(QtyVol.ZERO) { acc, it -> acc + it }.vwap()
+fun Iterable<QtyPx>.vwap() = fold(QtyVol.ZERO) { a,b -> a + b }.vwap()
 
 fun main() {
     println( listOf(
