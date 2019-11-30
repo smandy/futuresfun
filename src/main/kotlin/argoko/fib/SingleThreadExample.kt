@@ -29,13 +29,6 @@ class Fib1(val n : Int) : Calc {
 }
 
 
-/**
- *
- * Single threads still win sometimes :-)
- *
- * Forkjoin was a disaster for large N :-(
- *
- **/
 class Fib2(val n : Int) : Calc {
     private val ONE = 1.toBigInteger()
     private val cache = HashMap<Int,BigInteger>(n).apply { set(1,ONE); set(2,ONE) }
@@ -171,7 +164,7 @@ fun main() {
     ).map {
         Result(calcResults(it.calc, iters, it.name), it.name, it.fmt)
     }.also {
-        FileWriter("/tmp/stats.json").use {fw ->
+        FileWriter("/home/andy/stats_fairgame.json").use {fw ->
             gson.toJson(it, fw)
         }
     }

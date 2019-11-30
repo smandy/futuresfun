@@ -2,7 +2,8 @@ import pylab as pl
 import json
 import numpy as np
 
-stats = json.load(open("/tmp/stats.json"))
+stats = json.load(open("/home/andy/stats_opt.json"))
+stats = json.load(open("/home/andy/stats_fairgame.json"))
 
 ax = None
 
