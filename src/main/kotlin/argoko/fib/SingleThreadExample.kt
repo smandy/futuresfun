@@ -76,7 +76,11 @@ class Fib3(val n : Int) : Calc {
 
 class Fib4(val n : Int) : Calc {
     private val ONE = 1.toBigInteger()
-    private val cache = Array<BigInteger?>(n+1) {null} .also { it[1] = ONE; it[2] = ONE }
+    private val cache = Array<BigInteger?>(n+1) { null }
+            .also {
+                it[1] = ONE;
+                it[2] = ONE
+            }
 
     override fun calc() : BigInteger {
         (1..n).forEach { _calc(it) }
@@ -93,6 +97,33 @@ class Fib4(val n : Int) : Calc {
         }
     }
 }
+
+class Fib5(val n : Int) : Calc {
+    private val ONE = 1.toBigInteger()
+    private val cache = Array<BigInteger?>(n+1) { null }
+            .also {
+                it[1] = ONE;
+                it[2] = ONE
+            }
+
+    override fun calc() : BigInteger = if ( n==1 || n==2 ) {
+        ONE
+    } else {
+        (1..n).forEach { _calc(it) }
+        _calc(n)
+    }
+
+    fun _calc(x : Int = n) : BigInteger = cache[x].let {
+        if (it == null ) {
+            val ret = _calc(x-1) + _calc(x-2)
+            cache[x] = ret
+            ret
+        } else {
+            it
+        }
+    }
+}
+
 
 
 fun<U> timeIt( f : () -> U): Pair<U, Long> {
@@ -135,7 +166,9 @@ fun main() {
     listOf( Source(Fib1(fibn), "bx-", "fib1"),
             Source(Fib2(fibn), "rx-", "fib2"),
             Source(Fib3(fibn), "gx-","fib3"),
-            Source(Fib4(fibn), "mx-", "fib4")).map {
+            Source(Fib4(fibn), "mx-", "fib4"),
+            Source(Fib5(fibn), "kx-", "fib5")
+    ).map {
         Result(calcResults(it.calc, iters, it.name), it.name, it.fmt)
     }.also {
         FileWriter("/tmp/stats.json").use {fw ->

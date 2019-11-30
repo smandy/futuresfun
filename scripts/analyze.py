@@ -57,5 +57,7 @@ pl.title('cum')
 for x in stats:
     xs, ys = norm(x['results'])
     ycum = np.cumsum(ys)
-    pl.plot(xs, ycum)
+    pl.plot(xs, ycum, label = x['name'])
+
+pl.legend()
  
