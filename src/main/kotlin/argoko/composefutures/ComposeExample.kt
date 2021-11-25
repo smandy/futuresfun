@@ -34,7 +34,7 @@ fun main() {
         e
     }.thenCompose {
         x -> CompletableFuture.supplyAsync( Supplier {
-        log.info("Supplyng");
+        log.debug("Supplyng");
         x + 11 }, executors)
     }.thenCompose {
         x ->
@@ -43,11 +43,13 @@ fun main() {
         executors.submit { log.info("Returning from scheuler"); ret.complete(x+10) }
         ret
     }.thenCompose {
-        x -> log.info("Composing")
+        x -> log.debug("Composing")
         KCompletableFuture.supplyAsync(executors) { Thread.sleep(1000);log.info("Supplying"); x * 2}
     }.thenCompose {
         x ->
         log.info("Returning completedfuture")
         CompletableFuture.completedFuture( x + 20)
     }.join()
+
+    log.error("All done")
 }
